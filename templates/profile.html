@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Профиль: {{ user.username }}</h1>
+<h2>Загруженные работы</h2>
+<div class="row">
+    {% for work in works %}
+        <div class="col-md-4">
+            <div class="card">
+                <img src="{{ url_for('static', filename='uploads/' + work.image_path.split('/')[-1]) }}" class="img-fluid" alt="{{ work.title }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ work.title }}</h5>
+                    <a href="{{ url_for('work_detail', work_id=work.id) }}" class="btn btn-primary">Подробнее</a>
+                    {% if current_user.is_authenticated and current_user.id == user.id %}
+                        <form action="{{ url_for('delete_work', work_id=work.id) }}" method="POST" onsubmit="return confirm('Вы уверены, что хотите удалить эту работу?');">
+                            <button type="submit" class="btn btn-danger mt-2">Удалить</button>
+                        </form>
+                {% endif %}
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}
