@@ -35,8 +35,6 @@
 
 📂 Структура проекта
 
-project_folder/
-
         │-- static/
         │         uploads/      
         │         img/         
