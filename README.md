@@ -37,15 +37,15 @@
 
 project_folder/
 
-        │-- static/\
-        │   ├── uploads/        # Загруженные изображения\
-        │   ├── img/            # Иконки\
-        │-- templates/          # HTML-шаблоны\
-        │-- app.py              # Основной файл приложения\
-        │-- db.py               # Файл для работы с БД\
-        │-- models.py           # Определение моделей данных/\
-        │-- requirements.txt    # Зависимости проекта\
-        │-- README.md           # Этот файл\
+        │-- static/
+        │         uploads/      
+        │         img/         
+        │-- templates      
+        │-- app.py         
+        │-- db.py              
+        │-- models.py       
+        │-- requirements.txt   
+        │-- README.md           
 
 🔧 Технологии
 
