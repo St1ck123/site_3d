@@ -47,4 +47,5 @@ jobs:
         
       - name: Run tests
         run: |
-          pytest
+          export PYTHONPATH=$(pwd):$PYTHONPATH
+          pytest  # Запуск тестов с помощью pytest
