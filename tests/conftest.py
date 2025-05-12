@@ -3,7 +3,7 @@ import sys
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 import tempfile
 import pytest
-from main_app import app as flask_app, init_app
+from main_app import main_app as flask_app, init_app
 from db import init_db, get_db
 from flask import g
 
