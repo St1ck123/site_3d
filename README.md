@@ -54,3 +54,4 @@
         Bootstrap (стили)
 
 ![Tests](https://github.com/St1ck123/site_3d/actions/workflows/ci.yml/badge.svg)
+![Build](https://github.com/St1ck123/site_3d/actions/workflows/build.yml/badge.svg)
