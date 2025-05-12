@@ -34,6 +34,9 @@ jobs:
         run: |
           export PYTHONPATH=$(pwd):$PYTHONPATH
 
+      - name: Show current directory
+        run: pwd
+        
       - name: Run tests
         run: |
           pytest
