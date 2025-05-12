@@ -30,12 +30,20 @@ jobs:
         run: |
           pip install pytest
       
+      - name: List directory contents
+        run: ls -l /home/runner/work/site_3d/site_3d  # Проверяем файлы в каталоге
+
+      - name: Check current working directory from Python
+        run: |
+          python -c "import os; print(os.getcwd())"  # Проверяем рабочий каталог Python
+
+      - name: Print sys.path from Python
+        run: |
+          python -c "import sys; print(sys.path)"  # Проверяем пути поиска Python
+
       - name: Set PYTHONPATH
         run: |
-          export PYTHONPATH=$(pwd):$PYTHONPATH
-
-      - name: Show current directory
-        run: pwd
+          export PYTHONPATH=$(pwd):$PYTHONPATH  # Добавляем корень проекта в PYTHONPATH
         
       - name: Run tests
         run: |
