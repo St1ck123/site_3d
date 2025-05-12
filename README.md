@@ -53,4 +53,4 @@
         
         Bootstrap (стили)
 
-![CI Tests](https://github.com/St1ck123/site_3d/actions/workflows/python-ci.yml/badge.svg)
+![Tests](https://github.com/St1ck123/site_3d/actions/workflows/ci.yml/badge.svg)
