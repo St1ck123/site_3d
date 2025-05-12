@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>Галерея работ</h1>
+
+<form method="GET" class="mb-3">
+    <input type="text" name="search" placeholder="Поиск..." class="form-control" value="{{ request.args.get('search', '') }}">
+
+    <select name="sort" class="form-control mt-2">
+        <option value="desc" {% if request.args.get('sort') == 'desc' %}selected{% endif %}>Сначала популярные</option>
+        <option value="asc" {% if request.args.get('sort') == 'asc' %}selected{% endif %}>Сначала менее популярные</option>
+    </select>
+
+    <button type="submit" class="btn btn-primary mt-2">Применить</button>
+</form>
+
+<div class="row">
+    {% for work in works %}
+        <div class="col-md-4">
+            <div class="card">
+                <img src="{{ work.image_path }}" class="card-img-top" alt="{{ work.title }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ work.title }}</h5>
+                    <p class="card-text">Автор: {{ work.username }}</p>
+                    <p class="card-text">❤️ <span id="likes-count-{{ work.id }}">{{ work.likes_count }}</span></p>
+                    {% if current_user.is_authenticated %}
+                        <img src="{{ url_for('static', filename='img/' + ('filled_like.png' if work.user_liked else 'empty_like.png')) }}"
+                             id="like-btn-{{ work.id }}"
+                             class="like-icon"
+                             onclick="toggleLike({{ work.id }})"
+                             style="cursor: pointer; width: 40px;">
+                    {% else %}
+                        <p><a href="{{ url_for('login') }}">Войдите</a>, чтобы лайкнуть.</p>
+                    {% endif %}
+
+                    <a href="{{ url_for('work_detail', work_id=work.id) }}" class="btn btn-primary mt-2">Подробнее</a>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+<script>
+    function toggleLike(workId) {
+        fetch(`/like/${workId}`, { method: 'POST' })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById(`likes-count-${workId}`).textContent = data.likes_count;
+                let likeBtn = document.getElementById(`like-btn-${workId}`) || document.getElementById("like-btn");
+                if (likeBtn) {
+                    likeBtn.src = data.liked
+                        ? "{{ url_for('static', filename='img/filled_like.png') }}"
+                        : "{{ url_for('static', filename='img/empty_like.png') }}";
+                }
+            });
+    }
+</script>
+{% endblock %}
