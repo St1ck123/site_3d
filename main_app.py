@@ -6,12 +6,14 @@ from datetime import datetime
 from db import init_app, get_db
 from werkzeug.utils import secure_filename
 
-app = Flask(__name__)
-app.config.update(
-    SECRET_KEY='super_secret_key_12345',
-    UPLOAD_FOLDER='static/uploads',
-    DATABASE='database.db'
-)
+def main_app():
+    app = Flask(__name__)
+    app.config.update(
+        SECRET_KEY='super_secret_key_12345',
+        UPLOAD_FOLDER='static/uploads',
+        DATABASE='database.db'
+    )
+    return app
 
 @app.template_filter('datetimeformat')
 def datetimeformat_filter(value, format='%d.%m.%Y %H:%M'):
