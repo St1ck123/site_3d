@@ -17,6 +17,8 @@ def app():
         'SECRET_KEY': 'test',
     })
 
+    init_app(flask_app)
+
     with flask_app.app_context():
         init_db()
 
